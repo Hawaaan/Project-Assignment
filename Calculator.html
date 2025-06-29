@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Simple Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-300 flex items-center justify-center min-h-screen">
+
+  <div class="bg-white p-6 rounded-xl shadow-xl w-full max-w-sm">
+    <h2 class="text-2xl font-bold text-center mb-4"> <img  class="h-10" src="./calculator.png" alt=""> Calculator</h2>
+
+    <div class="mb-4">
+      <input id="num1" type="number" placeholder="Number 1"
+        class="w-full p-2 border rounded mb-2 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <input id="num2" type="number" placeholder="Number 2"
+        class="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+    </div>
+
+    <div class="grid grid-cols-4 gap-2 mb-4">
+      <button onclick="calculate('+')" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">+</button>
+      <button onclick="calculate('-')" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">−</button>
+      <button onclick="calculate('*')" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">×</button>
+      <button onclick="calculate('/')" class="bg-blue-500 text-white p-2 rounded hover:bg-blue-600">÷</button>
+    </div>
+
+    <div class="text-center">
+      <h3 class="text-lg font-semibold">Result:</h3>
+      <p id="result" class="text-2xl font-bold text-green-600 mt-2">--</p>
+    </div>
+  </div>
+
+  <script>
+    function calculate(operator) {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      let result = "";
+
+      if (isNaN(num1) || isNaN(num2)) {
+        result = "Enter valid numbers!";
+      } else {
+        switch (operator) {
+          case '+': result = num1 + num2; break;
+          case '-': result = num1 - num2; break;
+          case '*': result = num1 * num2; break;
+          case '/': result = num2 !== 0 ? num1 / num2 : "Can't divide by 0"; break;
+        }
+      }
+
+      document.getElementById("result").innerText = result;
+    }
+  </script>
+
+</body>
+</html>
